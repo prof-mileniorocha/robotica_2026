@@ -14,40 +14,45 @@ void loop() {
 }
 
 void exemploSimples() {
-  for(int i = 0; i < 10; i++){
+  int frequencia = 1000; // Hz
+
+  for (int i = 0; i < 10; i++) {
     digitalWrite(led, HIGH);
-    digitalWrite(buzzer, HIGH);
+    tone(buzzer, frequencia);
     delay(200);
+
     digitalWrite(led, LOW);
-    digitalWrite(buzzer, LOW);
+    noTone(buzzer);
     delay(200);
   }
 
   delay(1000);
 
-  for(int i = 0; i < 5; i++){
+  for (int i = 0; i < 5; i++) {
     digitalWrite(led, HIGH);
-    digitalWrite(buzzer, HIGH);
+    tone(buzzer, 600); // som mais grave
     delay(800);
+
     digitalWrite(led, LOW);
-    digitalWrite(buzzer, LOW);
+    noTone(buzzer);
     delay(800);
   }
 }
 
 void exemploSirene(){
-  // Sirene subindo (grave → agudo)
-  for (int freq = 400; freq <= 1000; freq += 10) {
-    digitalWrite(led, HIGH);
-    tone(buzzer, freq);
-    delay(10);
-  }
+// (mais agudo = mais alto)
+// Sirene subindo (grave → agudo)
+for (int freq = 1500; freq <= 3500; freq += 20) {
+  digitalWrite(led, HIGH);
+  tone(buzzer, freq);
+  delay(8);
+}
 
-  // Sirene descendo (agudo → grave)
-  for (int freq = 1000; freq >= 400; freq -= 10) {
-    digitalWrite(led, LOW);
-    tone(buzzer, freq);
-    delay(10);
-  }
+// Sirene descendo (agudo → grave)
+for (int freq = 3500; freq >= 1500; freq -= 20) {
+  digitalWrite(led, LOW);
+  tone(buzzer, freq);
+  delay(8);
+}
 
 }
